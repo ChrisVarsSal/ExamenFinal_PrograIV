@@ -1,18 +1,25 @@
-package com.progra.examenfinal_prograiv.data.models;
-import java.util.Objects;
-import javax.persistence.*;
+package com.progra.examenfinal_prograiv.data.payload.request;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-@Entity
-public class Producto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Enumerated(EnumType.STRING)
+public class RequestProducto {
+    @NotBlank
+    @NotNull
     private String nombre;
+    @NotBlank
+    @NotNull
     private String descripcion;
+    @NotBlank
+    @NotNull
     private String url;
+    @NotBlank
+    @NotNull
     private double precio;
+    @NotBlank
+    @NotNull
     private int canInventario;
-    public Producto() {}
     public String getNombre() {
         return nombre;
     }
@@ -42,20 +49,5 @@ public class Producto {
     }
     public void setCanInventario(int canInventario) {
         this.canInventario = canInventario;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Producto p = (Producto) o;
-        return Double.compare(p.precio, precio) == 0 &&
-                Objects.equals(descripcion, p.descripcion) &&
-                Objects.equals(url, p.url) &&
-                Objects.equals(precio, p.precio) &&
-                Objects.equals(canInventario, p.canInventario);
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre, descripcion, url, precio, canInventario);
     }
 }
